@@ -124,9 +124,9 @@ public with sharing class ClassesObjectsMethods {
         
         for (Integer i=0; i<str.length(); i++) {
             // get individual characters from the string - hint use substring or split
-            // check if the character is a vowel
+            // check if the character is a vowel - cast to lowercase so it will match on the set
             // if it is a vowel, increment the result Integer
-            if (vowels.contains( str.substring(i, i+1) )){
+            if (vowels.contains( str.substring(i, i+1).toLowerCase() )){
                 vowelCount++;
             }
         }
@@ -151,7 +151,7 @@ public with sharing class ClassesObjectsMethods {
         // Loop through the list of scientists' names
         for(String name : scientistNames){
             // If the name doesn't contain the letter 'G', skip this iteration
-            if (name.contains('g') || name.contains('G')){
+            if (name.containsIgnoreCase('g')){
                 // Add the name to the result string, followed by a comma
                 gNames += name + ',';
             }
@@ -363,10 +363,9 @@ public with sharing class ClassesObjectsMethods {
         private String name;
         private Integer age;
         
-        // Constructor to initialize the name and age
+        // Constructor to initialize the name and age with constructor chaining
         public Person() {
-            this.name = '';
-            this.age = 0;
+            this('', 0);
         }
 
         public Person(String name, Integer age) {
@@ -461,7 +460,7 @@ public with sharing class ClassesObjectsMethods {
         // Loop through each name in the provided list of names
         for(String name : names){
             // Create a new Person object for each name
-            Person myPerson = Person.createPerson(name, age);
+            Person myPerson = createPerson(name, age);
             
             // Add the new Person object to the list of Person objects
             people.add(myPerson);
